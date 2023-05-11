@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="1"> -->
+    <title>Document</title>
+    <style>
+        img{
+            width:100px;
+            border-radius: 10px;
+        }
+        li{
+            list-style: none;
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        nav a{
+            text-decoration: none;
+            color: black;
+        }
+        nav a:hover{
+            color:aquamarine;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            gap:10px;
+        }
+    </style>
+</head>
+<body>
+    <nav th:insert="navegacionVG"></nav>
+
+    <h1>Lista de videojuegos</h1>
+    <section class="container">
+            <div th:each="vg: ${videojuegos}">
+                <p th:text="${vg.name}"></p>
+                <p th:text="${vg.description}"></p>
+                <!-- https://www.baeldung.com/thymeleaf-js-function-call -->
+                <button th:onclick="deleteVG(  [[${vg.id}]]  )">❌</button>
+            </div>
+    </section>
+   <script>
+    
+        async function deleteVG(id){
+            //console.log('Quieres borarr el meme con id=',id)
+            await fetch('/vg/'+id, {method: 'DELETE'})
+            
+            console.log('Videojuego borrado')
+            window.location.replace('/vg')
+        }
+   </script>
+</body>
+</html>

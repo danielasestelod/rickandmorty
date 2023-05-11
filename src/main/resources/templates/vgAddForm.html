@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="head(titulo='Añadiendo')"></head>
+<body>
+    <nav th:insert="navegacionVG"></nav>
+    <h1>Creación de un nuevo meme</h1>
+    <form class="form" action="/vg" method="post">
+        <label for="name">Nombre</label>
+        <input id="name" name="name" placeholder="Nombre">
+
+        <label for="description">Descripción</label>
+        <input id="description" name="description" placeholder="Descripción">
+
+        <label for="category">Categoría</label>
+        <select id="category" name="category">
+            <option value="accion">Acción</option>
+            <option value="aventura">Aventura</option>
+            <option value="estrategia">Estrategia</option>
+            <option value="otro">Otro</option>
+        </select>
+
+        <label for="author">Autor</label>
+        <input id="author" name="author" placeholder="Nombre del creador">
+
+        <button>Crear</button>
+    </form>
+</body>
+</html>
